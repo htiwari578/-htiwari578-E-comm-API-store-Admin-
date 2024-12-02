@@ -113,3 +113,34 @@ export const refreshAccessToken = async (req, res) => {
         return res.status(403).json({ message: "Invalid or expired refresh token", success: false });
     }
 };
+export const logout = async (req,res) => {
+    try {
+        // get refresh token from cookies
+        const refreshToken = req.cookies.refreshToken;
+        if(!refreshToken){
+            return res.status(400).json({
+                message:"No token provided , already locked out",
+                success:false
+            })
+        }
+        // verify refresh token
+        const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+        // Delete the refresh token from redis
+        await redis.del(decoded.userID);
+
+        // Clear the refresh token cookie
+        res.clearCookie("refreshToken", {
+            httpOnly:true,
+            sameSite:'strict'
+        });
+
+        // success response
+        return res.status(200).json({
+        message:'Logged out Successfully',
+        success:true
+    })
+    } catch (error) {
+        console.log(error);
+    }
+}
