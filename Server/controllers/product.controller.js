@@ -3,7 +3,17 @@ import { redis } from "../utils/redis.js";
 
 
 export const getAllProducts = async (req,res)=>{
+    try {
+        const products = await Product.find({});
 
+        res.status(200).json({
+            message:"Products fetched successfully",
+            success: true,
+            products
+        })
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 export const getFeaturedProducts = async (req,res)=>{
@@ -141,4 +151,35 @@ export const getProductByCategory = async (req,res)=>{
         console.log(error);
     }
 
+}
+
+
+export const toggleFeaturesProduct = async (req, res)=> {
+
+    try {
+        const product = await Product.findById(req.params.id);
+        if(product){
+            product.isFeatured = !product.isFeatured;
+            const updatedProduct = await product.save();
+            await updateFeaturedProductsCache();
+            res.json(updatedProduct);
+
+        }else{
+            res.status(404).json({
+                message:"Product not found"
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function updateFeaturedProductsCache() {
+    try {
+        // lean() method is used to return plain javscript objects
+        const featuredProducts = await Product.find({isFeatured: true}).lean();
+        await redis.set("featured_products", JSON.stringify(featuredProducts));
+    } catch (error) {
+        console.log("error in update cahche function");
+    }
 }
