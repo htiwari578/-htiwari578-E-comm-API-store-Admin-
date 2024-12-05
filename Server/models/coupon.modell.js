@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const couponSchema = new mongoose ({
     code:{
-        type:'String',
+        type:String,
         required:true,
         unique:true,
     },
@@ -14,11 +14,11 @@ const couponSchema = new mongoose ({
         max:100,
     },
     expirationDate:{
-        type:'Date',
+        type:Date,
         required:true,
     },
     isActive:{
-        type:'Boolean',
+        type:Boolean,
         default:true,
     },
     userId: {
