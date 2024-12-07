@@ -1,6 +1,6 @@
 import express from 'express'
-import isAuthentication, { adminRoute } from '../middleware/authMiddleware';
-import { getAnalyticsData } from '../controllers/analytics.controller';
+import isAuthentication, { adminRoute } from '../middleware/authMiddleware.js';
+import { getAnalyticsData } from '../controllers/analytics.controller.js';
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.get('/' , isAuthentication ,adminRoute, async(req,res)=>{
         res.status(500).json({
             message:"server error",
             error:error.message
-        })
+        });
     }
 })
 

@@ -5,7 +5,9 @@ import connectDB from './utils/db.js';
 import userRoute from './routes/user.route.js'
 import ProductRoute from './routes/product.route.js'
 import cartRoute from './routes/cart.routes.js'
-
+import couponRoutes from './routes/cart.routes.js'
+import paymentRoutes from './routes/payment.routes.js'
+import analyticRoutes from './routes/analytics.route.js'
 
 dotenv.config();
 
@@ -22,6 +24,9 @@ app.use(cookieParser());
 app.use("/api/h3/user", userRoute);
 app.use("/api/h3/products", ProductRoute);
 app.use("/api/h3/cart", cartRoute);
+app.use("/api/h3/coupons", couponRoutes);
+app.use("/api/h3/payments", paymentRoutes);
+app.use("/api/h3/analytics", analyticRoutes);
 
 
 app.listen(PORT,()=>{

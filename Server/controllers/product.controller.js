@@ -4,6 +4,7 @@ import { redis } from "../utils/redis.js";
 
 export const getAllProducts = async (req,res)=>{
     try {
+        // find all products
         const products = await Product.find({});
 
         res.status(200).json({
