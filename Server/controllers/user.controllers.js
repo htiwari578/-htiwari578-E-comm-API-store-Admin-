@@ -143,4 +143,16 @@ export const logout = async (req,res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+
+export const getProfile = async (req , res) => {
+    try{
+        res.json(req.user);
+    }catch(error){
+        res.status(500).json({
+            message:"error while fetching profile",
+            success:false
+        });
+    }
+};
