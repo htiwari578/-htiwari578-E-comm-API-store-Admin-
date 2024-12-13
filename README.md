@@ -11,7 +11,7 @@ User authentication system with JWT using Access Tokens and Refresh Tokens.
 
 Users can sign up, log in, and authenticate using JWT tokens.
 
-4. 👑 Admin Dashboard
+4.👑Admin Dashboard
 
 Admin users can manage products, categories, orders, and view sales analytics.
 
