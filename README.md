@@ -19,11 +19,11 @@ Admin users can manage products, categories, orders, and view sales analytics.
 
 Provides the admin with an overview of sales, total orders, and user activity.
 
-6. 🔒 Security
+6.🔒Security
 
 Password hashing, secure JWT handling, and HTTPS support for secure data transmission.   
 
-7.🛡️ Data Protection
+7.🛡️Data Protection
 
 User data is stored securely, with encryption and privacy best practices in place.
 
