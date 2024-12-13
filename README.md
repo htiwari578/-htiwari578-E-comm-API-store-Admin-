@@ -27,6 +27,6 @@ Password hashing, secure JWT handling, and HTTPS support for secure data transmi
 
 User data is stored securely, with encryption and privacy best practices in place.
 
-8. 🚀 Caching with Redis
+8.🚀Caching with Redis
 
 Optimized for performance with Redis caching frequently accessed data 
